@@ -51,7 +51,7 @@ The algorithm iterates through a range of potential base temperatures ($10^\circ
 │   └── processed/          # Cleaned datasets & IDH lookup tables (Private)
 ├── src/
 │   ├── code_dataprep.ipynb      # Scripts for loading and merging data
-│   ├── code_dataanlaysis.ipynb   # Calculate IDH / regression &optimization
+│   ├── code_regression.ipynb   # Calculate IDH / regression &optimization
 │   └── code_visualize.ipynb  # Review and visualize final data
 ├── results/
 │   ├── UBEM_Result_Final.csv  # Final output (Private)
@@ -86,7 +86,7 @@ The final analysis generates a CSV file containing IDH model parameters for each
 ============================================================
 1. Success Rate : 99.4% (Valid Buildings / Every Building)
 2. Model Accuracy Average : 0.5934 (R2 Score)
-3. Highly Trusted Buildings : 497,684개 (40.6% is R2 >= 0.7)
+3. Highly Trusted Buildings : 497,684 (40.6% is R2 >= 0.7)
 ------------------------------------------------------------
 4. The Most Frequent IDH : 10°C
 5. Average IDH : 18.38°C
@@ -104,7 +104,7 @@ The final analysis generates a CSV file containing IDH model parameters for each
 ============================================================
 1. Success Rate : 69.0% (2nd Valid Buildings / 1st Valid Buildings)
 2. Refined Model Accuracy Average : 0.6254 (R2 Score)
-3. Highly Trusted Buildings : 385,920개 (45.6% is R2 >= 0.7)
+3. Highly Trusted Buildings : 385,920 (45.6% is R2 >= 0.7)
 ------------------------------------------------------------
 4. The Most Frequent IDH : 21°C
 5. Average IDH : 18.50°C
@@ -112,6 +112,21 @@ The final analysis generates a CSV file containing IDH model parameters for each
 6. Average Thermal Insulation Performance (U) : 0.29
 ============================================================
 ```
+* **Key Finding**: After refinement, the most frequent base temperature shifted to 21°C. This indicates that Korean buildings tend to start heating at higher outdoor temperatures compared to the conventional standard of 18.3°C (65°F).
+
+  
+
+## Limitations & Future Work
+### Limitations
+* **Building Usage Classification:** The current analysis applies a unified model across all building types (Residential, Commercial, Industrial, etc.) without distinction. This may include non-heated spaces (e.g., warehouses), leading to statistical outliers.
+* **Spatial Granularity:** Due to the massive dataset size, the analysis focuses on administrative districts (SIGUNGU) rather than precise geospatial coordinates (Latitude/Longitude), limiting detailed spatial interpretation.
+
+### Future Plans
+* **Targeted Spatial Analysis:** Future research will narrow the spatial scope to specific cities (e.g., Seoul, Busan) to conduct high-resolution spatial analysis.
+* **Multidimensional Integration:**
+    * **Building Registers:** Integrating detailed building ledgers to classify energy patterns by usage (Apartments, Offices, Retail).
+    * **Socio-Economic Factors:** Analyzing correlations with regional income levels, population density, and building age.
+    * **Urban Context:** Considering micro-climate factors such as the Urban Heat Island (UHI) effect.
 ---
 
 ## Requirements
@@ -120,7 +135,6 @@ To run this project, you need the following environment:
 
 * **Language:** Python 3.8+
 * **Libraries:** pip install pandas numpy scipy scikit-learn geopandas tqdm requests matplotlib seaborn
-* 
 
 ## Data Sources
 
